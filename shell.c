@@ -9,6 +9,7 @@ void run_shell(void)
 	int interactive_mode = isatty(fileno(stdin));
 	char input[MAX_INPUT_LENGTH], *args[MAX_ARG_COUNT];
 	int exit_status = 0;
+	int token_count;
 
 	while (1)
 	{
@@ -18,8 +19,7 @@ void run_shell(void)
 		if (fgets(input, sizeof(input), stdin) == NULL)
 		{
 			if (feof(stdin))
-			{
-			}
+				break;
 			else
 			{
 				perror("fgets");
@@ -41,8 +41,9 @@ void run_shell(void)
 			continue;
 		}
 
-		tokenize_input(input, args);
-		execute_command(args[0], args, &exit_status);
+		token_count = tokenize_input(input, args);
+		if (token_count > 0)
+			execute_command(args[0], args, &exit_status);
 
 	}
 }

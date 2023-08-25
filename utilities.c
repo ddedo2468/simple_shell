@@ -26,11 +26,16 @@ int tokenize_input(char *input, char **tokens)
 	int token_count = 0;
 	char *token = strtok(input, " ");
 
+	remove_newline(input);
+
 	while (token != NULL && token_count < MAX_ARG_COUNT - 1)
 	{
-		tokens[token_count] = token;
+		if (strlen(token) > 0)
+		{
+			tokens[token_count] = token;
+			token_count++;
+		}
 		token = strtok(NULL, " ");
-		token_count++;
 	}
 	tokens[token_count] = NULL;
 
