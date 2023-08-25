@@ -75,35 +75,10 @@ int string_compare(const void *i, const void *j)
   */
 void handle_env_command(void)
 {
-	int i, env_count;
-	char **env_copy;
+	int x;
 
-	env_count = 0;
-
-	while (environ[env_count] != NULL)
+	for (x = 0 ; environ[x] != NULL ; x++)
 	{
-		env_count++;
+		printf("%s\n", environ[x]);
 	}
-	env_copy = malloc((env_count + 1) * sizeof(char *));
-	if (env_copy == NULL)
-	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
-	}
-
-
-	for (i = 0 ; i < env_count ; i++)
-	{
-		env_copy[i] = environ[i];
-	}
-	env_copy[env_count] = NULL;
-
-	qsort(env_copy, env_count, sizeof(char *), string_compare);
-
-	for (i = 0 ; i < env_count ; i++)
-	{
-		printf("%s\n", env_copy[i]);
-	}
-
-	free(env_copy);
 }
