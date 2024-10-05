@@ -25,18 +25,18 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
 Run the shell: ./hsh
 
-##Usage
+## Usage
 
 - Enter commands and press Enter to execute them.
 - Use the "exit" command to exit the shell.
 - Use the "env" command to display environment variables.
 
-##How It Works
+## How It Works
 
 CustomShell reads user commands, tokenizes them, and executes them using child processes.
 It supports basic shell operations and provides a simple interface for users to interact with the system.
 
-##Acknowledgments
+## Acknowledgments
 
 This project was developed by the ALX collaboration team and inspired by the concepts of operating systems and C programming.
 
